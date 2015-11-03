@@ -23,20 +23,24 @@ class CfgPatches
 			//Motxilles
 			"1RA_MOTX_LE_ocp",
 			"1RA_MOTX_LEQ_ocp",
+			"1RA_MOTX_FUS_M4A1_ocp",
 			//Unitats
 			"1RA_LE_ocp",
-			"1RA_LEQ_ocp"
+			"1RA_LEQ_ocp",
+			"1RA_FUS_M4A1_ocp"
 		};
 		weapons[] = 
 		{
 			//Armes
 			"1RA_ARMAP_LE",
 			"1RA_ARMAP_LEQ",
+			"1RA_ARMAP_FUS_M4A1",
 			//Uniformes
 			"1RA_UNI_REG_ocp",
 			//Armilles
 			"1RA_ARMI_LE_ocp",
-			"1RA_ARMI_LEQ_ocp"
+			"1RA_ARMI_LEQ_ocp",
+			"1RA_ARMI_FUS_ocp"
 		};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"A3_Characters_F_BLUFOR","rhsusf_main","ace_main","task_force_radio_items"};
@@ -55,6 +59,7 @@ class CfgFactionClasses
 	class PPCC_FAC_B
 	{
 		scope = 2;
+		scopeCurator = 2;
 		displayName = "PPCC";
 		icon = "\cc_rhs_usf\data\img\iconB.paa";
 		priority = -9999999999999;
@@ -90,60 +95,22 @@ class CfgWeapons
  /*///////ARMES/*/
 /*/////////////*/
 	class rhs_weap_m4a1_m320;
+	class rhs_weap_m4a1;
 	
+	/*************************/
+	/*Arma Líder d'Esquadra**/ // ---> 1RA_ARMAP_LE
 	/***********************/
-	/*Arma Líder d'Esquadra*/ // ---> 1RA_ARMAP_LE
-	/***********************/
-	/**/class 1RA_ARMAP_LE: rhs_weap_m4a1_m320
-	/**/{
-	/**/	class LinkedItems
-	/**/	{
-	/**/		class LinkedItemsOptic
-	/**/		{
-	/**/			item = "rhsusf_acc_ACOG";
-	/**/			slot = "CowsSlot";
-	/**/		};
-	/**/
-	/**/		class LinkedItemsAcc
-	/**/		{
-	/**/			item = "rhsusf_acc_anpeq15";
-	/**/			slot = "PointerSlot";
-	/**/		};
-	/**/
-	/**/		class LinkedItemsMuzzle
-	/**/		{
-	/**/			item = "rhsusf_acc_SF3P556";
-	/**/			slot = "MuzzleSlot";
-	/**/		};
-	/**/	};
-	/**/};
+	/**/MACRO_MOD_ARMA(1RA_ARMAP_LEQ,rhs_weap_m4a1_m320,rhsusf_acc_ACOG,rhsusf_acc_anpeq15,rhsusf_acc_SF3P556)
 
+	/**********************/
+	/*Arma Líder d'Equip**/ // ---> 1RA_ARMAP_LEQ
 	/********************/
-	/*Arma Líder d'Equip*/ // ---> 1RA_ARMAP_LEQ
-	/********************/
-	/**/class 1RA_ARMAP_LEQ: rhs_weap_m4a1_m320
-	/**/{
-	/**/	class LinkedItems
-	/**/	{
-	/**/		class LinkedItemsOptic
-	/**/		{
-	/**/			item = "rhsusf_acc_ACOG";
-	/**/			slot = "CowsSlot";
-	/**/		};
-	/**/
-	/**/		class LinkedItemsAcc
-	/**/		{
-	/**/			item = "rhsusf_acc_anpeq15";
-	/**/			slot = "PointerSlot";
-	/**/		};
-	/**/
-	/**/		class LinkedItemsMuzzle
-	/**/		{
-	/**/			item = "rhsusf_acc_SF3P556";
-	/**/			slot = "MuzzleSlot";
-	/**/		};
-	/**/	};
-	/**/};
+	/**/MACRO_MOD_ARMA(1RA_ARMAP_LEQ,rhs_weap_m4a1_m320,rhsusf_acc_ACOG,rhsusf_acc_anpeq15,rhsusf_acc_SF3P556)
+
+	/**************************/
+	/*Arma Fuseller M4A1 OCP**/ // ---> 1RA_ARMAP_FUS_M4A1
+	/************************/
+	/**/MACRO_MOD_ARMA(1RA_ARMAP_FUS_M4A1,rhs_weap_m4a1,rhsusf_acc_ACOG,rhsusf_acc_anpeq15,rhsusf_acc_SF3P556)
 
 
 
@@ -154,23 +121,10 @@ class CfgWeapons
 	class Uniform_Base;
 	class UniformItem;
 
+	/*****************************/
+	/*Uniforme Reglamentari OCP**/ // ---> 1RA_UNI_REG_ocp
 	/***************************/
-	/*Uniforme Reglamentari OCP*/ // ---> 1RA_UNI_REG_ocp
-	/***************************/
-	/**/class 1RA_UNI_REG_ocp: rhs_uniform_cu_ocp
-	/**/{
-	/**/	author = "Cavallers del Cel";
-	/**/	scope = 2;
-	/**/	displayName = "Uniforme Reglamentari OCP";
-	/**/
-	/**/	class ItemInfo: UniformItem
-	/**/	{
-	/**/  		uniformModel = "-";
-	/**/		uniformClass = "1RA_LE_ocp";
-	/**/		containerClass = "Supply40";
-	/**/		mass = 40;
-	/**/	};
-	/**/};
+	/**/MACRO_MOD_UNIFORME(1RA_UNI_REG_ocp,rhs_uniform_cu_ocp,B_Soldier_F,40,40)
 
 
 
@@ -179,9 +133,10 @@ class CfgWeapons
 /*////////////////*/
 	class rhsusf_iotv_ocp_squadleader;
 	class rhsusf_iotv_ocp_teamleader;
+	class rhsusf_iotv_ocp_rifleman;
 
-	/**************************/
-	/*Armilla Líder d'Esquadra*/ // ---> 1RA_ARMI_LE_ocp
+	/****************************/
+	/*Armilla Líder d'Esquadra**/ // ---> 1RA_ARMI_LE_ocp
 	/**************************/
 	/**/class 1RA_ARMI_LE_ocp : rhsusf_iotv_ocp_squadleader
 	/**/{
@@ -191,10 +146,21 @@ class CfgWeapons
 	/**/
 	/**/};
 
-	/***********************/
-	/*Armilla Líder d'Equip*/ // ---> 1RA_ARMI_LEQ_ocp
+	/*************************/
+	/*Armilla Líder d'Equip**/ // ---> 1RA_ARMI_LEQ_ocp
 	/***********************/
 	/**/class 1RA_ARMI_LEQ_ocp : rhsusf_iotv_ocp_teamleader
+	/**/{
+	/**/	author = "Cavallers del Cel";
+	/**/	scope = 2;
+	/**/	displayName = "Armilla Reglamentaria OCP";
+	/**/
+	/**/};
+
+	/********************/
+	/*Armilla Fuseller**/ // ---> 1RA_ARMI_FUS_ocp
+	/******************/
+	/**/class 1RA_ARMI_FUS_ocp : rhsusf_iotv_ocp_rifleman
 	/**/{
 	/**/	author = "Cavallers del Cel";
 	/**/	scope = 2;
@@ -219,9 +185,10 @@ class CfgVehicles
  /*///////MOTXILLES/*/
 /*/////////////////*/
 	class tf_rt1523g_big_rhs;
+	class rhsusf_assault_eagleaiii_ocp;
 
-	/***************************/
-	/*Motxilla Líder d'Esquadra*/ // ---> 1RA_MOTX_LE_ocp
+	/*****************************/
+	/*Motxilla Líder d'Esquadra**/ // ---> 1RA_MOTX_LE_ocp
 	/***************************/
 	/**/class 1RA_MOTX_LE_ocp : tf_rt1523g_big_rhs
 	/**/{
@@ -245,9 +212,9 @@ class CfgVehicles
 	/**/	};
 	/**/};
 
-	/*************************/
-	/*Motxilla Líder d'Equip*/ // ---> 1RA_MOTX_LEQ_ocp
-	/***********************/
+	/**************************/
+	/*Motxilla Líder d'Equip**/ // ---> 1RA_MOTX_LEQ_ocp
+	/************************/
 	/**/class 1RA_MOTX_LEQ_ocp : tf_rt1523g_big_rhs
 	/**/{
 	/**/	author = "Cavallers del Cel";
@@ -272,6 +239,28 @@ class CfgVehicles
 	/**/	};
 	/**/};
 
+	/*****************************/
+	/*Motxilla Fuseller M4A1 OCP*/ // ---> 1RA_MOTX_FUS_M4A1_ocp
+	/***************************/
+	/**/class 1RA_MOTX_FUS_M4A1_ocp : rhsusf_assault_eagleaiii_ocp
+	/**/{
+	/**/	author = "Cavallers del Cel";
+	/**/	scope = 2;
+	/**/	displayName = "Motxilla Eagle III OCP";
+	/**/	hiddenSelections[] = {"camo"};
+	/**/	hiddenSelectionsTextures[] = {"\cc_rhs_usf\data\tex\TEX_1rausf_motx_eiii_ocp.paa"};
+	/**/	class TransportItems 
+	/**/	{
+	/**/		MACRO_ADDITEM(rhsusf_ANPVS_14,1)
+	/**/		MACRO_ADDITEM(rhs_mag_30Rnd_556x45_M855A1_Stanag_No_Tracer,6)
+	/**/		MACRO_ADDITEM(rhs_mag_an_m8hc,4)
+	/**/		MACRO_ADDITEM(rhs_mag_mk84,1)
+	/**/		MACRO_ADDITEM(rhs_mag_m67,3)
+	/**/		MACRO_ADDITEM(rhs_mag_m18_red,1)
+	/**/		MACRO_ADDITEM(rhs_mag_m18_green,1)
+	/**/	};
+	/**/};
+
 
 
   /*///////////////*/
@@ -279,6 +268,7 @@ class CfgVehicles
 /*///////////////*/
 	class B_Soldier_SL_F;
 	class B_Soldier_TL_F;
+	class B_Soldier_F;
 
 	/***********************/
 	/*Líder d'Esquadra OCP*/ // ---> 1RA_LE_ocp
@@ -314,7 +304,7 @@ class CfgVehicles
 	/******************/
 	/**/class 1RA_LEQ_ocp : B_Soldier_TL_F
 	/**/{
-	/**/	priority = 1;
+	/**/	priority = -1;
 	/**/	scope = 2;
 	/**/	scopeCurator = 2;
 	/**/	author = "Cavallers del Cel";
@@ -336,5 +326,35 @@ class CfgVehicles
         /**/	RespawnItems[] = {"ACE_EarPlugs","ACE_morphine","ACE_morphine","ACE_epinephrine","ACE_CableTie","ACE_key_west","rhsusf_acc_rotex5_grey","ACE_fieldDressing","ACE_fieldDressing","ACE_fieldDressing","ACE_fieldDressing","ACE_packingBandage","ACE_packingBandage","ACE_packingBandage","ACE_elasticBandage","ACE_elasticBandage","ACE_elasticBandage","ACE_quikclot","ACE_quikclot","ACE_quikclot","ACE_tourniquet","ACE_MapTools","ACE_microDAGR","G_Tactical_Clear"};
 	/**/	linkedItems[] = {"1RA_ARMI_LEQ_ocp","rhsusf_ach_helmet_headset_ocp","ItemMap","ItemCompass","tf_microdagr","tf_anprc152"};
 	/**/	respawnLinkedItems[] = {"1RA_ARMI_LEQ_ocp","rhsusf_ach_helmet_headset_ocp","ItemMap","ItemCompass","tf_microdagr","tf_anprc152"};
+	/**/};
+
+	/********************/
+	/*Fuseller M4A1 OCP*/ // ---> 1RA_FUS_M4A1_ocp
+	/******************/
+	/**/class 1RA_FUS_M4A1_ocp : B_Soldier_F
+	/**/{
+	/**/	priority = -2;
+	/**/	scope = 2;
+	/**/	scopeCurator = 2;
+	/**/	author = "Cavallers del Cel";
+	/**/	displayName = "Fuseller M4A1";
+	/**/	side = 1;
+	/**/	faction = "PPCC_FAC_B";
+	/**/	vehicleClass = "1RA_ocp";
+	/**/
+	/**/	uniformClass = "1RA_UNI_REG_ocp";
+	/**/	hiddenSelections[] = {"camo1","camo2","camo3","insignia"};
+	/**/	hiddenSelectionsTextures[] = {"\cc_rhs_usf\data\tex\TEX_1rausf_UniformeReglamentari_ocp.paa","\cc_rhs_usf\data\tex\TEX_1rausf_Detall_ocp.paa","\cc_rhs_usf\fake.paa","\cc_rhs_usf\fake.paa"};
+	/**/	model = "\rhsusf\addons\rhsusf_infantry\rhsusf_army_base.p3d";
+	/**/	backpack = "1RA_MOTX_FUS_M4A1_ocp";
+	/**/	weapons[] = {"1RA_ARMAP_FUS_M4A1","rhsusf_weap_m1911a1","lerca_1200_tan","Throw", "Put"};
+	/**/	respawnWeapons[] = {"1RA_ARMAP_FUS_M4A1","rhsusf_weap_m1911a1","lerca_1200_tan","Throw", "Put"};
+	/**/	magazines[] = {MACRO_COUNT3("rhsusf_mag_7x45acp_MHP"),MACRO_COUNT11("rhs_mag_30Rnd_556x45_M855A1_Stanag_No_Tracer"),MACRO_COUNT3("rhs_mag_m67"),"rhs_mag_an_m8hc"};
+	/**/	respawnMagazines[] = {MACRO_COUNT3("rhsusf_mag_7x45acp_MHP"),MACRO_COUNT11("rhs_mag_30Rnd_556x45_M855A1_Stanag_No_Tracer"),MACRO_COUNT3("rhs_mag_m67"),"rhs_mag_an_m8hc"};
+	/**/	Items[] = {"ACE_EarPlugs",MACRO_COUNT2("ACE_morphine"),"ACE_epinephrine","ACE_CableTie","ACE_key_west","rhsusf_acc_rotex5_grey",MACRO_COUNT4("ACE_fieldDressing"),MACRO_COUNT3("ACE_packingBandage"),MACRO_COUNT3("ACE_elasticBandage"),MACRO_COUNT3("ACE_quikclot"),"ACE_tourniquet","G_Tactical_Clear","ACE_MapTools"};
+	/**/	RespawnItems[] = {"ACE_EarPlugs",MACRO_COUNT2("ACE_morphine"),"ACE_epinephrine","ACE_CableTie","ACE_key_west","rhsusf_acc_rotex5_grey",MACRO_COUNT4("ACE_fieldDressing"),MACRO_COUNT3("ACE_packingBandage"),MACRO_COUNT3("ACE_elasticBandage"),MACRO_COUNT3("ACE_quikclot"),"ACE_tourniquet","G_Tactical_Clear","ACE_MapTools"};
+	/**/	linkedItems[] = {"1RA_ARMI_FUS_ocp","rhsusf_ach_helmet_headset_ocp","ItemMap","ItemCompass","tf_microdagr","tf_rf7800str"};
+	/**/	respawnLinkedItems[] = {"1RA_ARMI_FUS_ocp","rhsusf_ach_helmet_headset_ocp","ItemMap","ItemCompass","tf_microdagr","tf_rf7800str"};
+	/**/
 	/**/};
 };
