@@ -20,10 +20,10 @@
 #define MACRO_COUNT10(a) a, a, a, a, a, a, a, a, a, a
 #define MACRO_COUNT11(a) a, a, a, a, a, a, a, a, a, a, a
 #define MACRO_COUNT12(a) a, a, a, a, a, a, a, a, a, a, a, a
-#define MACRO_COUNT13(a) a, a, a, a, a, a, a, a, a, a, a, a, a
 
 //modificació arma
 #define MACRO_MOD_ARMA(NAME,PNAME,OPT,ACC,MUZ) \
+class ##PNAME##; \
 class ##NAME##: ##PNAME## \
 { \
 	author = "Cavallers del Cel"; \
@@ -38,6 +38,8 @@ class ##NAME##: ##PNAME## \
 
 //modificació uniforme
 #define MACRO_MOD_UNIFORME(NAME,PNAME,SOLDIER,CONT,MASS) \
+class UniformItem; \
+class ##PNAME##; \
 class ##NAME##: ##PNAME## \
 { \
 	author = "Cavallers del Cel"; \
